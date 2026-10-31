@@ -4,7 +4,23 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const MAX_PHOTOS = 4;
-const MAX_BYTES = 4 * 1024 * 1024;
+const MAX_BYTES = 20 * 1024 * 1024;
+// Photos are downscaled before upload: plenty for the AI models, and keeps the
+// request well under Vercel's 4.5 MB body limit.
+const MAX_SIDE = 1600;
+
+async function downscale(file: File): Promise<Blob> {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, MAX_SIDE / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+  canvas.getContext("2d")!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+  return new Promise((resolve, reject) =>
+    canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error("Could not process image."))), "image/jpeg", 0.88),
+  );
+}
 // Etsy's top-level seller categories, so publishing can narrow to the right branch.
 const CATEGORIES = [
   "Accessories",
@@ -49,7 +65,7 @@ export function NewProductForm() {
         continue;
       }
       if (file.size > MAX_BYTES) {
-        setError(`${file.name} is larger than 4 MB.`);
+        setError(`${file.name} is larger than 20 MB.`);
         continue;
       }
       if (next.length >= MAX_PHOTOS) {
@@ -71,7 +87,14 @@ export function NewProductForm() {
     setError(null);
     const form = new FormData(e.currentTarget);
     form.delete("photos");
-    photos.forEach((p) => form.append("photos", p.file));
+    try {
+      const blobs = await Promise.all(photos.map((p) => downscale(p.file)));
+      blobs.forEach((blob, i) => form.append("photos", blob, `photo-${i + 1}.jpg`));
+    } catch {
+      setError("One of the photos could not be read. Try a different image.");
+      setPending(false);
+      return;
+    }
 
     const res = await fetch("/api/generations", { method: "POST", body: form });
     const json = await res.json().catch(() => ({}));
@@ -150,7 +173,7 @@ export function NewProductForm() {
             Product photos <span className="text-brand-600">*</span>
           </h2>
           <p className="text-sm text-stone-500">
-            At least one, up to {MAX_PHOTOS}. JPEG, PNG or WebP under 4 MB. A clear, well-lit shot works best.
+            At least one, up to {MAX_PHOTOS}. JPEG, PNG or WebP. A clear, well-lit shot works best.
           </p>
         </div>
         <div

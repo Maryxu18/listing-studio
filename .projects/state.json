@@ -1,0 +1,100 @@
+{
+  "version": 2,
+  "providers": {
+    "supabase": {
+      "name": "Supabase"
+    },
+    "vercel": {
+      "name": "Vercel"
+    }
+  },
+  "resources": {
+    "db": {
+      "livemode": true,
+      "name": "db",
+      "providerName": "Supabase",
+      "serviceId": "project"
+    },
+    "supabase-plan": {
+      "livemode": true,
+      "name": "supabase-plan",
+      "providerName": "Supabase",
+      "serviceId": "free"
+    },
+    "vercel-plan": {
+      "livemode": true,
+      "name": "vercel-plan",
+      "providerName": "Vercel",
+      "serviceId": "hobby"
+    },
+    "web": {
+      "livemode": true,
+      "name": "web",
+      "providerName": "Vercel",
+      "serviceId": "project"
+    }
+  },
+  "environments": {
+    "default": {
+      "output": ".env",
+      "resources": [
+        {
+          "resourceName": "db"
+        },
+        {
+          "resourceName": "supabase-plan"
+        },
+        {
+          "resourceName": "vercel-plan"
+        },
+        {
+          "resourceName": "web"
+        }
+      ],
+      "variables": [
+        {
+          "variableName": "etsy-keystring",
+          "envKey": "ETSY_KEYSTRING"
+        },
+        {
+          "variableName": "etsy-shared-secret",
+          "envKey": "ETSY_SHARED_SECRET"
+        },
+        {
+          "variableName": "gemini-api-key",
+          "envKey": "GEMINI_API_KEY"
+        },
+        {
+          "variableName": "ideogram-api-key",
+          "envKey": "IDEOGRAM_API_KEY"
+        },
+        {
+          "variableName": "session-secret",
+          "envKey": "SESSION_SECRET"
+        }
+      ]
+    }
+  },
+  "variables": {
+    "etsy-keystring": {
+      "name": "etsy-keystring",
+      "backendId": "fprjvar_61VfoGhNv5V2q2Tk716Vfmqh0KSQ7JgkKSo98P8umIP2"
+    },
+    "etsy-shared-secret": {
+      "name": "etsy-shared-secret",
+      "backendId": "fprjvar_61VfoHBxDQqzIMiUZ16Vfmqh0KSQ7JgkKSo98P8um7MG"
+    },
+    "gemini-api-key": {
+      "name": "gemini-api-key",
+      "backendId": "fprjvar_61VfndMQYV4yW2lvM16Vfmqh0KSQ7JgkKSo98P8umU8W"
+    },
+    "ideogram-api-key": {
+      "name": "ideogram-api-key",
+      "backendId": "fprjvar_61VfneqLHI3XZiBWB16Vfmqh0KSQ7JgkKSo98P8um2Lg"
+    },
+    "session-secret": {
+      "name": "session-secret",
+      "backendId": "fprjvar_61VfnSRMKCb9KQB9016Vfmqh0KSQ7JgkKSo98P8umVUG"
+    }
+  }
+}

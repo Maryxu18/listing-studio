@@ -1,0 +1,97 @@
+{
+  "version": 4,
+  "project": {
+    "catalog": "prod",
+    "initializedAt": "2026-10-30T23:41:59.283Z",
+    "merchantDisplayName": null,
+    "merchantId": "acct_1UWOtL1OUUnRFT5z",
+    "projectId": "project_61VfnOBgvwabiMJ5U16Vfmqh0KSQ7JgkKSo98P8um9lI",
+    "projectName": "listing-studio"
+  },
+  "providers": {
+    "supabase": {
+      "accountRequestId": "fprvcnn_61VfnQILV9HKln2kt16Vfmqh0KSQ7JgkKSo98P8um2JE",
+      "configuration": {},
+      "linkedAt": "2026-10-30T23:44:10.623Z",
+      "providerId": "prvdr_61UIXYHdsyF69pZbG52n2",
+      "providerName": "Supabase",
+      "redirectUrl": null,
+      "requestedAt": "2026-10-30T23:44:10.623Z",
+      "status": "complete"
+    },
+    "vercel": {
+      "accountRequestId": "facctrq_61Vfot2cr0x4Dt3Nm16Vfmqh0KSQ7JgkKSo98P8umR9s",
+      "configuration": {},
+      "linkedAt": "2026-10-31T01:18:00.301Z",
+      "providerId": "prvdr_61ULUAr4zlQgZkvXY5LsG",
+      "providerName": "Vercel",
+      "redirectUrl": null,
+      "requestedAt": "2026-10-31T01:18:00.301Z",
+      "status": "complete"
+    }
+  },
+  "resources": {
+    "db": {
+      "configuration": {
+        "name": "listing-studio",
+        "region": "americas"
+      },
+      "createdAt": "2026-10-30T23:44:51.250Z",
+      "lastRevealedAt": "2026-10-30T23:44:51.624Z",
+      "lastStatus": "complete",
+      "livemode": true,
+      "name": "db",
+      "providerId": "prvdr_61UIXYHdsyF69pZbG52n2",
+      "providerName": "Supabase",
+      "resourceId": "fres_61VfnQdioBBpBguw116Vfmqh0KSQ7JgkKSo98P8umMIK",
+      "serviceId": "project"
+    },
+    "supabase-plan": {
+      "configuration": {},
+      "createdAt": "2026-10-30T23:44:22.093Z",
+      "lastRevealedAt": "2026-10-30T23:44:22.476Z",
+      "lastStatus": "complete",
+      "livemode": true,
+      "name": "supabase-plan",
+      "providerId": "prvdr_61UIXYHdsyF69pZbG52n2",
+      "providerName": "Supabase",
+      "resourceId": "fres_61VfnQPC1R4zWCG3r16Vfmqh0KSQ7JgkKSo98P8umJpw",
+      "serviceId": "free"
+    },
+    "vercel-plan": {
+      "configuration": {},
+      "createdAt": "2026-10-31T01:18:03.005Z",
+      "lastRevealedAt": "2026-10-31T01:18:03.426Z",
+      "lastStatus": "complete",
+      "livemode": true,
+      "name": "vercel-plan",
+      "providerId": "prvdr_61ULUAr4zlQgZkvXY5LsG",
+      "providerName": "Vercel",
+      "resourceId": "fres_61Vfot6iJkLoPcqpi16Vfmqh0KSQ7JgkKSo98P8umSQa",
+      "serviceId": "hobby"
+    },
+    "web": {
+      "configuration": {
+        "name": "listing-studio"
+      },
+      "createdAt": "2026-10-31T01:18:12.539Z",
+      "lastRevealedAt": "2026-10-31T01:18:12.983Z",
+      "lastStatus": "complete",
+      "livemode": true,
+      "name": "web",
+      "providerId": "prvdr_61ULUAr4zlQgZkvXY5LsG",
+      "providerName": "Vercel",
+      "resourceId": "fres_61VfotGco4ieO5zjx16Vfmqh0KSQ7JgkKSo98P8umKt6",
+      "serviceId": "project"
+    }
+  },
+  "managedProjectVariableEnvKeys": {
+    ".env": [
+      "ETSY_KEYSTRING",
+      "ETSY_SHARED_SECRET",
+      "GEMINI_API_KEY",
+      "IDEOGRAM_API_KEY",
+      "SESSION_SECRET"
+    ]
+  }
+}

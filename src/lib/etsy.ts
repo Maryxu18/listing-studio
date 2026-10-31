@@ -24,7 +24,9 @@ function credentials() {
 }
 
 export function redirectUri() {
-  return `${process.env.APP_URL || "https://localhost:3000"}/api/etsy/callback`;
+  // On Vercel, VERCEL_PROJECT_PRODUCTION_URL is the production domain (no scheme).
+  const production = process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  return `${process.env.APP_URL || production || "https://localhost:3000"}/api/etsy/callback`;
 }
 
 // ---------------------------------------------------------------------------
